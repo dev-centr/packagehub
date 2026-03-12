@@ -1,0 +1,61 @@
+---
+title: Introduction
+description: Publish packages across npm, PyPI, Crates.io, and more from one dashboard with OIDC and managed GitHub workflows.
+---
+
+# AdapterHub
+
+AdapterHub is a **publishing-as-a-service** idea: one place to connect your GitHub repos and package registries, then publish adapters to npm, PyPI, Crates.io, and others without managing API keys or each registry’s setup by hand.
+
+## The problem
+
+Publishing to many registries today means:
+
+- Creating and verifying accounts on each registry
+- Generating and storing API tokens or keys
+- Writing and maintaining separate CI configs (e.g. GitHub Actions) per registry
+- Learning each registry’s quirks and trusted-publisher flows
+
+## The goal
+
+With AdapterHub (once custom OIDC is supported where needed):
+
+1. **Sign in** with GitHub (or Google).
+2. **Connect** your repo and choose which registries to publish to.
+3. **One-time setup**: add the service’s “Trusted Publisher” (or equivalent) in each registry’s settings.
+4. **Publish** from a single dashboard or by triggering a managed workflow—no long-lived secrets in your repo.
+
+User packages stay under **your** branding (e.g. “Published via GitHub Actions from `you/repo`”), not a shared service account.
+
+## How it works (architecture)
+
+| Layer | Role |
+| ----- | ----- |
+| **Identity** | OAuth (GitHub/Google) to sign you into the AdapterHub dashboard. |
+| **Integration** | GitHub App or OAuth to read your repo and (optionally) inject a managed publish workflow. |
+| **Orchestration** | When you publish, the service triggers a GitHub Actions workflow in your repo. GitHub (a trusted OIDC issuer for npm, PyPI, Crates.io) does the OIDC handshake with each registry. |
+| **Registries** | You add “Trusted Publisher” once per registry pointing at your repo/workflow; no API keys in the dashboard. |
+
+Today, most registries only trust a **fixed set** of OIDC issuers (e.g. GitHub Actions, GitLab CI). So AdapterHub doesn’t act as its own IdP for publish; it uses a **proxy** approach: a managed workflow in your repo, triggered by the service, so the registry still sees “GitHub Actions” and your repo.
+
+## What’s in the docs
+
+**Contributors & setup:**
+
+- [Install](/docs/install) — Prerequisites and `pnpm install`.
+- [Running](/docs/running) — Dev servers, build, and start.
+- [Repo architecture](/docs/repo-architecture) — Monorepo layout, apps, and CI.
+
+**Using AdapterHub:**
+
+- [Getting started](/docs/getting-started) — Connect GitHub, connect registries, first publish.
+- [Supported registries](/docs/registries) — npm, PyPI, Crates.io, and roadmap.
+- [OIDC & trusted publishing](/docs/oidc-trusted-publishing) — Why we use GitHub Actions as the trusted issuer and how one-time setup works.
+- [Writing adapters](/docs/adapters) — How to structure and document adapters for multiple languages/registries.
+
+<Cards>
+  <Card title="Install" href="/docs/install" />
+  <Card title="Running" href="/docs/running" />
+  <Card title="Getting started" href="/docs/getting-started" />
+  <Card title="Registries" href="/docs/registries" />
+</Cards>

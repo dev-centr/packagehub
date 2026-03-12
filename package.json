@@ -1,0 +1,19 @@
+{
+  "name": "adapterhub",
+  "private": true,
+  "description": "Publish packages across registries (npm, PyPI, Crates.io, etc.) from one dashboard with OIDC and managed GitHub workflows.",
+  "scripts": {
+    "dev": "pnpm --filter adapterhub-web dev",
+    "dev:docs": "pnpm --filter adapterhub-docs dev",
+    "build": "pnpm -r build",
+    "build:web": "pnpm --filter adapterhub-web build",
+    "build:docs": "pnpm --filter adapterhub-docs build"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "create-fumadocs-app": "^16.0.72"
+  }
+}

@@ -1,0 +1,41 @@
+= Repository architecture
+
+AdapterHub is a pnpm workspace monorepo with two applications and shared tooling.
+
+== Top-level layout
+
+[options="header"]
+|===
+| Path | Purpose
+| `apps/web` | SolidStart app — main product (dashboard, GitHub/registry connections, publish UI)
+| `apps/docs` | Fumadocs (Next.js) — documentation site (MDX in `content/docs/`)
+| `scripts/` | One-off scripts (e.g. create-docs scaffold)
+| `README.adoc` | Project overview and quick links
+| `install.adoc` | Installation steps
+| `running.adoc` | How to run and build locally
+| `repo-architecture.adoc` | This file
+|===
+
+== Web app (`apps/web`)
+
+* Stack: SolidStart (Vite 7, Solid 1.9, Nitro).
+* Entry: `src/entry-client.tsx`, `src/entry-server.tsx`, `src/app.tsx`.
+* Routes: file-based under `src/routes/` (e.g. `index.tsx`, `dashboard.tsx`, `registries.tsx`).
+* Config: `vite.config.ts`, `tsconfig.json`.
+
+== Docs app (`apps/docs`)
+
+* Stack: Next.js 16, Fumadocs UI, Fumadocs MDX, Tailwind 4.
+* Content: `content/docs/*.mdx`; sidebar order in `content/docs/meta.json`.
+* Source config: `source.config.ts`; Fumadocs loader in `lib/source.ts`.
+* Build output: static export or Node server depending on Next config; CI deploys the docs (e.g. GitHub Pages).
+
+== CI/CD
+
+* `.github/workflows/` — GitHub Actions:
+** `docs.yml` — build and deploy the Fumadocs site (e.g. to GitHub Pages or Vercel).
+
+== Dependencies
+
+* Root `package.json`: workspace scripts only; `create-fumadocs-app` was used as devDependency for scaffolding and can be removed.
+* Each app has its own `package.json` and lockfile is at repo root (`pnpm-lock.yaml`).

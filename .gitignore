@@ -1,0 +1,11 @@
+node_modules/
+.vinxi/
+.output/
+.next/
+.turbo/
+dist/
+out/
+*.log
+.env
+.env.local
+.source/

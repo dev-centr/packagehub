@@ -1,0 +1,47 @@
+= Installation
+
+This project is a pnpm workspace. Install dependencies from the repository root.
+
+== Prerequisites
+
+* Node.js ≥ 20 (Node ≥ 22 required for `apps/web`)
+* pnpm 9+ (enable with `corepack enable` then `corepack prepare pnpm@latest --activate`)
+
+== Steps
+
+. Clone the repo (canonical path in code hive: `Z:\code\github.com\dev-centr\adapterhub`):
++
+[source,bash]
+----
+git clone https://github.com/dev-centr/adapterhub.git
+cd adapterhub
+----
+
+. Install all workspace dependencies:
++
+[source,bash]
+----
+pnpm install
+----
+
+. Optional: verify the docs site builds (required for CI):
++
+[source,bash]
+----
+pnpm build:docs
+----
+
+. Optional: verify the web app builds:
++
+[source,bash]
+----
+pnpm build:web
+----
+
+== Workspace packages
+
+| Package | Path | Purpose
+| adapterhub-web | `apps/web` | SolidStart app (main product)
+| adapterhub-docs | `apps/docs` | Fumadocs (Next.js) documentation site
+
+After install, see `running.adoc` to start the apps locally.

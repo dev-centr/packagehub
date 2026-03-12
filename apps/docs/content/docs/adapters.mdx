@@ -1,0 +1,53 @@
+---
+title: Writing adapters
+description: How to structure and document adapters for multiple languages and registries.
+---
+
+# Writing adapters
+
+If you have a core library or API and want to ship **adapters** for several languages (e.g. JS, Python, Rust), this page gives a simple structure and how it fits with AdapterHub.
+
+## What is an “adapter”?
+
+An **adapter** is a thin package that wraps or re-exposes your core logic for a given ecosystem:
+
+- **npm**: A JavaScript/TypeScript package (e.g. `my-sdk-js`).
+- **PyPI**: A Python package (e.g. `my-sdk-python`).
+- **Crates.io**: A Rust crate (e.g. `my-sdk-rs`).
+
+They might call a shared REST API, wrap a native library via FFI, or reimplement the same spec in each language. AdapterHub helps you **publish** all of them from one place; it does not dictate how you implement the adapters.
+
+## Repo layout (suggested)
+
+A common layout in a single repo:
+
+```
+my-project/
+├── core/           # Shared spec, API client, or native lib
+├── adapters/
+│   ├── js/         # npm package
+│   ├── python/     # PyPI package
+│   └── rust/       # Crates.io package
+├── .github/
+│   └── workflows/
+│       └── adapter-publish.yml   # Managed by or suggested by AdapterHub
+└── docs/
+```
+
+Each adapter folder contains the usual metadata for that registry (`package.json`, `pyproject.toml`, `Cargo.toml`, etc.). The same workflow can build and publish each one when triggered (e.g. by tag or from the dashboard).
+
+## Docs and AI suggestions (future)
+
+AdapterHub aims to provide:
+
+- **Links to official docs** for each registry (npm, PyPI, Crates.io) so you know how to add trusted publishers and what the workflow needs to do.
+- **AI-assisted boilerplate** for new adapters: e.g. “Generate a Python adapter from this repo” that proposes `pyproject.toml`, `src/` layout, and a minimal wrapper. This would be best-effort and reviewed by you before publishing.
+
+## Versioning
+
+Keep adapter versions in sync with your core or release version (e.g. same semver tag). The managed workflow can publish all adapters for a given tag so that “v1.2.0” is consistent across npm, PyPI, and Crates.io.
+
+## Next steps
+
+- [Getting started](/docs/getting-started) — Connect the repo and registries.
+- [Supported registries](/docs/registries) — Per-registry setup and links.

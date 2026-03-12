@@ -1,0 +1,42 @@
+---
+title: Supported registries
+description: npm, PyPI, Crates.io, and how AdapterHub integrates with each.
+---
+
+# Supported registries
+
+AdapterHub is designed to work with any registry that supports **trusted publishing (OIDC)**. Today, the major ones support a fixed list of issuers (e.g. GitHub Actions, GitLab CI). The table below summarizes the situation and AdapterHub’s approach.
+
+## Overview
+
+| Registry | Feature name | AdapterHub approach |
+| -------- | ------------- | ------------------- |
+| **npm** | Provenance / OIDC | User adds trusted publisher for their repo; AdapterHub triggers the workflow that runs in that repo. |
+| **PyPI** | Trusted Publishers | Same: user configures PyPI to trust the GitHub repo/workflow; workflow runs in user’s repo. |
+| **Crates.io** | Trusted Publishing | Same: user configures Crates.io to trust the GitHub repo; workflow runs in user’s repo. |
+
+Because registries do **not** yet accept an arbitrary third-party OIDC IdP (e.g. “AdapterHub as IdP”), the service does **not** perform the token exchange itself. Instead, it **triggers a workflow in your repo**; that workflow runs on GitHub Actions, which is already a trusted issuer for these registries. Your package page still shows your repo and “GitHub Actions” as the publisher.
+
+## npm (JavaScript/TypeScript)
+
+- **Docs**: [npm provenance and trusted publishers](https://docs.npmjs.com/generating-provenance-statements).
+- **Catch-22**: The first version of a new package often must be published once manually (or with a temporary token) before you can set up OIDC. AdapterHub’s docs and UI will guide you through that first publish if needed.
+- **Scope**: Use your own scope (e.g. `@yourname/package`); AdapterHub does not publish under its own scope.
+
+## PyPI (Python)
+
+- **Docs**: [PyPI Trusted Publishers](https://docs.pypi.org/trusted-publishers/).
+- **Flow**: In PyPI project settings, add a trusted publisher with your GitHub repo and workflow name. After that, the workflow can request a short-lived token and publish without storing a token in secrets.
+
+## Crates.io (Rust)
+
+- **Docs**: [Crates.io Trusted Publishing](https://doc.rust-lang.org/cargo/reference/publishing.html#trusted-publishers).
+- **Flow**: In Crates.io account settings, add a trusted publisher for your GitHub repo. The workflow in your repo then uses OIDC to publish.
+
+## Others (Maven, RubyGems, etc.)
+
+As more registries add OIDC or “trusted publisher” support for GitHub Actions (or other CI), AdapterHub can add them. The same pattern applies: one-time trusted publisher setup in the registry, workflow in your repo, AdapterHub triggers the workflow and optionally helps with verification.
+
+## Custom OIDC (future)
+
+If a registry later allows **custom OIDC issuers**, AdapterHub could act as an IdP and issue tokens itself. That would reduce the need for a managed workflow in the user’s repo. Until then, the “managed workflow + GitHub as trusted issuer” approach keeps user branding and avoids long-lived secrets.

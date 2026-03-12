@@ -1,0 +1,54 @@
+= AdapterHub
+
+**Publish packages across registries from one dashboard.** Connect GitHub, add trusted publishers once, and ship to npm, PyPI, Crates.io, and more — without storing API keys or juggling each registry’s setup.
+
+https://github.com/dev-centr/adapterhub[Repository] ·
+https://github.com/dev-centr/adapterhub/actions[Actions]
+
+== What it does
+
+AdapterHub is a _publishing-as-a-service_ idea:
+
+* You sign in with GitHub (or Google).
+* You connect a repo and choose which package registries to publish to (npm, PyPI, Crates.io, etc.).
+* You do a one-time “Trusted Publisher” setup in each registry (pointing at your repo and a managed workflow).
+* You publish from the dashboard or by triggering a workflow — no long-lived secrets in your repo, and packages stay under your branding.
+
+Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Actions), AdapterHub uses a _proxy_ approach: it triggers a managed GitHub Actions workflow in your repo; that workflow does the OIDC handshake with each registry. The package page still shows your repo and “GitHub Actions.”
+
+== Quick links
+
+* link:install.adoc[Install] — Prerequisites and `pnpm install`
+* link:running.adoc[Running] — Dev servers, build, and start
+* link:repo-architecture.adoc[Repo architecture] — Monorepo layout, apps, and CI
+
+== Repo at a glance
+
+* *Web app* (`apps/web`): SolidStart — dashboard, connect GitHub, connect registries, trigger publish.
+* *Docs* (`apps/docs`): Fumadocs (Next.js) — user and contributor docs; deployed via GitHub Actions.
+
+Canonical path in code hive: `Z:\code\github.com\dev-centr\adapterhub`.
+
+== Commands (from repo root)
+
+[source,bash]
+----
+pnpm install      # Install all workspace deps
+pnpm dev          # Web app @ http://localhost:5173
+pnpm dev:docs     # Docs @ http://localhost:3000 (open /docs)
+pnpm build        # Build all
+pnpm build:web    # Build web only
+pnpm build:docs   # Build docs only
+----
+
+== Documentation site
+
+The Fumadocs site in `apps/docs` covers:
+
+* Introduction and architecture
+* Getting started (sign in, connect repo, connect registries, publish)
+* Supported registries (npm, PyPI, Crates.io)
+* OIDC and trusted publishing
+* Writing adapters
+
+Run `pnpm dev:docs` and open http://localhost:3000/docs. The docs are also built and deployed by GitHub Actions (see `.github/workflows/docs.yml`).

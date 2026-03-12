@@ -1,0 +1,60 @@
+---
+title: OIDC & trusted publishing
+description: Why we use GitHub Actions as the trusted issuer and how one-time setup works.
+---
+
+# OIDC & trusted publishing
+
+This page explains the OIDC (OpenID Connect) and “trusted publishing” model that AdapterHub relies on, and why the service uses a **proxy** (managed workflow in your repo) instead of acting as its own identity provider.
+
+## What is trusted publishing?
+
+Many package registries support **trusted publishing**: instead of storing long-lived API keys or passwords, you tell the registry to trust an **identity provider (IdP)**. When your build or publish pipeline runs, it requests a **short-lived token** from that IdP; the registry verifies the token and grants publish access. No secrets are stored in your repo or in the service.
+
+## Why registries don’t trust AdapterHub (yet)
+
+As of today, **npm, PyPI, and Crates.io** only trust a **fixed list** of IdPs, for example:
+
+- GitHub Actions
+- GitLab CI
+- (Sometimes) CircleCI or others
+
+They do **not** let you paste in an arbitrary “AdapterHub OIDC issuer URL” and trust it. So if AdapterHub acted as its own OIDC IdP and sent a token to npm, npm would reject it because AdapterHub is not on their allowed list.
+
+## The proxy approach: managed GitHub workflow
+
+To work within that constraint, AdapterHub uses a **proxy** design:
+
+1. **Your repo** contains a workflow (e.g. `.github/workflows/adapter-publish.yml`) that knows how to request OIDC tokens from **GitHub** and call the registry APIs (npm, PyPI, Crates.io).
+2. **You** go to each registry once and add a “Trusted Publisher” that points at **your GitHub repo** (and that workflow). So the registry trusts **GitHub**, not AdapterHub.
+3. **AdapterHub** does not hold any registry secrets. When you click “Publish,” it uses the GitHub API to **trigger** that workflow (e.g. `workflow_dispatch`) in your repo.
+4. The workflow runs on **GitHub Actions**, gets a short-lived token from the registry via OIDC, and publishes. The package page shows **your repo** and “GitHub Actions,” so you keep full branding.
+
+So:
+
+- **Identity**: You sign into AdapterHub with OAuth (GitHub/Google).
+- **Trust**: Registries trust **GitHub Actions** for your repo, not AdapterHub.
+- **Orchestration**: AdapterHub only triggers the workflow and can help with verification or dry-runs.
+
+## One-time setup per registry
+
+For each registry you want to use:
+
+1. In the registry’s website (npm, PyPI, Crates.io), open account or project settings.
+2. Find “Trusted Publishers” or “OIDC” / “Provenance.”
+3. Add a trusted publisher that specifies:
+   - **Owner/repo**: your GitHub repo (e.g. `yourname/my-package`)
+   - **Workflow** (if required): the filename or name AdapterHub uses (e.g. `adapter-publish.yml` or `adapter-publish`).
+4. Save. From then on, any run of that workflow in that repo can request a token and publish without you storing a secret.
+
+AdapterHub’s UI can show you the exact values to enter and, where possible, verify the connection (e.g. by triggering a dry-run).
+
+## If registries add custom OIDC later
+
+If a registry later allows **custom OIDC issuers**, AdapterHub could:
+
+- Implement an OIDC IdP.
+- Let you register “AdapterHub” as a trusted publisher in the registry.
+- Issue short-lived tokens when you click “Publish,” without needing a workflow in your repo.
+
+Until then, the managed workflow + GitHub as trusted issuer is the way to keep **no secrets** and **your branding**.

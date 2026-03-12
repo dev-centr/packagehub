@@ -1,0 +1,43 @@
+---
+title: Getting started
+description: Connect GitHub, add registries, and run your first publish.
+---
+
+# Getting started
+
+This guide walks you through the main steps to use AdapterHub once the service is running.
+
+## 1. Sign in
+
+Use **Sign in with GitHub** (or Google) to authenticate with AdapterHub. The service only needs read access to the repos you choose and, if you use the managed workflow, permission to add or update a workflow file in that repo.
+
+## 2. Connect a repository
+
+In the dashboard, connect a GitHub repository that contains your package (or multi-package monorepo). The service will use it to:
+
+- List branches and tags
+- Optionally inject or update a managed `.github/workflows/adapter-publish.yml`
+- Trigger that workflow when you click “Publish” or when a release tag is created
+
+You keep full ownership and branding; the workflow runs in your repo under your account.
+
+## 3. Connect registries (one-time)
+
+For each registry you want to publish to (npm, PyPI, Crates.io, etc.):
+
+1. **Create an account** on that registry if you don’t have one (manual sign-up and email verification).
+2. In the registry’s settings, add a **Trusted Publisher** (or equivalent) and point it at your **GitHub repo** and the workflow that AdapterHub uses (e.g. `adapter-publish`).
+3. In AdapterHub, mark that registry as “connected” (e.g. by running a dry-run or entering the registry username/scope for verification).
+
+After this one-time setup, you do **not** need to store API keys or tokens in AdapterHub or in GitHub Secrets.
+
+## 4. Publish
+
+- **From the dashboard**: Trigger a publish for a chosen tag or version; AdapterHub dispatches the workflow in your repo, which uses OIDC to obtain short-lived tokens and publish to each connected registry.
+- **From Git**: Optionally configure the workflow to run on push of a release tag (e.g. `v*`); the same OIDC flow runs in CI.
+
+## Next steps
+
+- See [Supported registries](/docs/registries) for per-registry notes and links to their trusted-publisher docs.
+- Read [OIDC & trusted publishing](/docs/oidc-trusted-publishing) for the technical details.
+- Use [Writing adapters](/docs/adapters) to structure multi-language adapter packages.
