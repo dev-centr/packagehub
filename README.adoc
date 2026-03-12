@@ -27,7 +27,7 @@ Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Acti
 * *Web app* (`apps/web`): SolidStart — dashboard, connect GitHub, connect registries, trigger publish.
 * *Docs* (`apps/docs`): Fumadocs (Next.js) — user and contributor docs; deployed via GitHub Actions.
 
-Canonical path in code hive: `Z:\code\github.com\dev-centr\adapterhub`.
+*Canonical path in code hive:* `Z:\code\github.com\dev-centr\adapterhub` — clone or work from there to match the FOLDER_SCHEMA.
 
 == Commands (from repo root)
 
@@ -51,4 +51,6 @@ The Fumadocs site in `apps/docs` covers:
 * OIDC and trusted publishing
 * Writing adapters
 
-Run `pnpm dev:docs` and open http://localhost:3000/docs. The docs are also built and deployed by GitHub Actions (see `.github/workflows/docs.yml`).
+Run `pnpm dev:docs` and open http://localhost:3000/docs.
+
+To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/adapterhub/.

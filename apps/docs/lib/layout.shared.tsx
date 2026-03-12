@@ -1,8 +1,7 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
-// Set to your GitHub repo when published
 export const gitConfig = {
-  user: 'your-org',
+  user: 'dev-centr',
   repo: 'adapterhub',
   branch: 'main',
 };
