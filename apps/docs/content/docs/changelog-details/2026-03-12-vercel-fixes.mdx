@@ -10,6 +10,7 @@ The Vercel deployment was failing due to:
 1. PNPM version mismatch (Lockfile was v10, package.json was v9.14).
 2. Missing build script permissions in PNPM 10 (`onlyBuiltDependencies`).
 3. Next.js `output: 'export'` mode conflicting with API routes on Vercel.
+4. SolidStart/Nitro building a generic **Node server** bundle instead of the Vercel-specific `.vercel/output` format, causing a 404 on all routes.
 
 ## Solution
 
@@ -26,3 +27,10 @@ Updated `apps/docs/next.config.mjs` to check for `process.env.VERCEL`.
 
 ### Node Engines
 Standardized all `engines` fields to `node: >=22`.
+
+### Nitro Vercel Preset
+Updated `apps/web/vite.config.ts` to pass `server: { preset: "vercel" }` to `solidStart()` when the `VERCEL` environment variable is set.
+
+**Why this matters**: Nitro (the server used by SolidStart) supports multiple deployment targets via "presets." Each preset produces a different output format. Without `preset: "vercel"`, Nitro builds a plain Node `http.createServer` bundle in `.output/`. Vercel does not know how to run this — it expects a `.vercel/output/` directory with a specific config, functions, and static file layout. Setting the preset instructs Nitro to produce exactly that format, which Vercel can then interpret and deploy as serverless functions.
+
+The `VERCEL` env var is automatically set to `"1"` on all Vercel build machines, so the switch is transparent — local development and other CI environments continue to use `node-server`.

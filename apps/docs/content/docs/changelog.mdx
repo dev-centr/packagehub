@@ -13,6 +13,7 @@ Notable changes to AdapterHub.
 * **Build Pipeline**: Added `onlyBuiltDependencies` to root `package.json` for `esbuild`, `@parcel/watcher`, and `sharp`.
 * **Docs Build Fix**: Disabled static export on Vercel to support API search routes.
 * **Node Version**: Standardized all packages to `node: >=22`.
+* **Nitro Preset Fix**: Set `preset: "vercel"` in `vite.config.ts` so SolidStart/Nitro produces a Vercel-compatible `.vercel/output` artifact instead of a generic Node server bundle.
 
 ---
 
