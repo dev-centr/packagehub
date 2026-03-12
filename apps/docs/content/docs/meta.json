@@ -1,4 +1,4 @@
 {
   "title": "Docs",
-  "pages": ["index", "install", "running", "repo-architecture", "---Guides---", "getting-started", "registries", "oidc-trusted-publishing", "adapters"]
+  "pages": ["index", "install", "running", "repo-architecture", "---Guides---", "getting-started", "registries", "oidc-trusted-publishing", "adapters", "changelog"]
 }

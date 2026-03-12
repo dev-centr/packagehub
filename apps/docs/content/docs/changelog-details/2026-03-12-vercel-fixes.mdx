@@ -1,0 +1,28 @@
+---
+title: 2026-03-12 - Vercel Fixes
+description: Detailed breakdown of Vercel deployment and PNPM 10 updates
+---
+
+# 2026-03-12 - Vercel Fixes
+
+## Problem
+The Vercel deployment was failing due to:
+1. PNPM version mismatch (Lockfile was v10, package.json was v9.14).
+2. Missing build script permissions in PNPM 10 (`onlyBuiltDependencies`).
+3. Next.js `output: 'export'` mode conflicting with API routes on Vercel.
+
+## Solution
+
+### PNPM 10 Migration
+Updated `package.json` to specify `pnpm@10.0.0`. This ensures the environment matches the lockfile exactly.
+
+### build scripts
+Added `@parcel/watcher`, `esbuild`, and `sharp` to `pnpm.onlyBuiltDependencies` in the root `package.json`.
+
+### Dynamic Next.js Configuration
+Updated `apps/docs/next.config.mjs` to check for `process.env.VERCEL`. 
+- If on Vercel: `output` is `undefined` (standard SSR/ISR mode), enabling API routes.
+- If not on Vercel: `output` is `export`, for GitHub Pages compatibility.
+
+### Node Engines
+Standardized all `engines` fields to `node: >=22`.

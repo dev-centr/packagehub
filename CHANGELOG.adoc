@@ -1,0 +1,8 @@
+= Changelog
+
+This repository uses link:apps/docs/content/docs/changelog.mdx[Fumadocs-based changelogs] in its documentation.
+
+== Latest Updates
+
+* **2026-03-12**: Vercel deployment and PNPM 10 migration.
+* For more details, see the xref:apps/docs/content/docs/changelog.mdx[Changelog in docs].
