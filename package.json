@@ -9,9 +9,16 @@
     "build:web": "pnpm --filter adapterhub-web build",
     "build:docs": "pnpm --filter adapterhub-docs build"
   },
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@10.0.0",
   "engines": {
-    "node": ">=24"
+    "node": ">=22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "sharp"
+    ]
   },
   "devDependencies": {
     "create-fumadocs-app": "^16.0.72"

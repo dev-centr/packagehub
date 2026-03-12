@@ -7,14 +7,17 @@ const isProd = process.env.NODE_ENV === 'production';
 const repoName = 'adapterhub';
 const orgOrUser = 'dev-centr';
 
+const isVercel = process.env.VERCEL === '1';
+const exportMode = isProd && !isVercel;
+
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  output: isProd ? 'export' : undefined,
+  output: exportMode ? 'export' : undefined,
   trailingSlash: true,
   images: { unoptimized: true },
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `https://${orgOrUser}.github.io/${repoName}/` : '',
+  basePath: exportMode ? `/${repoName}` : '',
+  assetPrefix: exportMode ? `https://${orgOrUser}.github.io/${repoName}/` : '',
   async rewrites() {
     return [
       {
