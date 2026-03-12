@@ -11,7 +11,7 @@
   },
   "packageManager": "pnpm@9.14.2",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "devDependencies": {
     "create-fumadocs-app": "^16.0.72"
