@@ -1,13 +1,13 @@
 {
-  "name": "adapterhub",
+  "name": "packagehub",
   "private": true,
   "description": "Publish packages across registries (npm, PyPI, Crates.io, etc.) from one dashboard with OIDC and managed GitHub workflows.",
   "scripts": {
-    "dev": "pnpm --filter adapterhub-web dev",
-    "dev:docs": "pnpm --filter adapterhub-docs dev",
+    "dev": "pnpm --filter packagehub-web dev",
+    "dev:docs": "pnpm --filter packagehub-docs dev",
     "build": "pnpm -r build",
-    "build:web": "pnpm --filter adapterhub-web build",
-    "build:docs": "pnpm --filter adapterhub-docs build"
+    "build:web": "pnpm --filter packagehub-web build",
+    "build:docs": "pnpm --filter packagehub-docs build"
   },
   "packageManager": "pnpm@10.0.0",
   "engines": {

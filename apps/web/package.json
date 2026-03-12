@@ -1,5 +1,5 @@
 {
-  "name": "adapterhub-web",
+  "name": "packagehub-web",
   "private": true,
   "type": "module",
   "scripts": {

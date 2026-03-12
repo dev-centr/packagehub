@@ -4,7 +4,7 @@ const withMDX = createMDX();
 
 // For GitHub Pages: basePath/assetPrefix only in production build (CI).
 const isProd = process.env.NODE_ENV === 'production';
-const repoName = 'adapterhub';
+const repoName = 'packagehub';
 const orgOrUser = 'dev-centr';
 
 const isVercel = process.env.VERCEL === '1';

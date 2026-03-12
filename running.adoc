@@ -32,7 +32,7 @@ Run each in a separate terminal if you want both at once.
 
 == Start production builds
 
-* Web (after `pnpm build:web`): `pnpm --filter adapterhub-web start`
-* Docs (after `pnpm build:docs`): `pnpm --filter adapterhub-docs start`
+* Web (after `pnpm build:web`): `pnpm --filter PackageHub-web start`
+* Docs (after `pnpm build:docs`): `pnpm --filter PackageHub-docs start`
 
 See `repo-architecture.adoc` for how the monorepo is structured.

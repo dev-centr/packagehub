@@ -9,12 +9,12 @@ This project is a pnpm workspace. Install dependencies from the repository root.
 
 == Steps
 
-. Clone the repo (canonical path in code hive: `Z:\code\github.com\dev-centr\adapterhub`):
+. Clone the repo (canonical path in code hive: `Z:\code\github.com\dev-centr\packagehub`):
 +
 [source,bash]
 ----
-git clone https://github.com/dev-centr/adapterhub.git
-cd adapterhub
+git clone https://github.com/dev-centr/packagehub.git
+cd packagehub
 ----
 
 . Install all workspace dependencies:
@@ -41,7 +41,7 @@ pnpm build:web
 == Workspace packages
 
 | Package | Path | Purpose
-| adapterhub-web | `apps/web` | SolidStart app (main product)
-| adapterhub-docs | `apps/docs` | Fumadocs (Next.js) documentation site
+| packagehub-web | `apps/web` | SolidStart app (main product)
+| packagehub-docs | `apps/docs` | Fumadocs (Next.js) documentation site
 
 After install, see `running.adoc` to start the apps locally.

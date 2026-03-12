@@ -1,6 +1,6 @@
 = Repository architecture
 
-AdapterHub is a pnpm workspace monorepo with two applications and shared tooling.
+PackageHub is a pnpm workspace monorepo with two applications and shared tooling.
 
 == Top-level layout
 

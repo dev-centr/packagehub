@@ -7,7 +7,7 @@ import "./app.css";
 export default function App() {
   return (
     <MetaProvider>
-      <Title>AdapterHub — Publish across registries</Title>
+      <Title>PackageHub — Publish across registries</Title>
       <Router
         root={(props) => (
           <>

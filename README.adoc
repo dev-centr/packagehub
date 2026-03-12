@@ -1,20 +1,20 @@
-= AdapterHub
+= PackageHub
 
 **Publish packages across registries from one dashboard.** Connect GitHub, add trusted publishers once, and ship to npm, PyPI, Crates.io, and more — without storing API keys or juggling each registry’s setup.
 
-https://github.com/dev-centr/adapterhub[Repository] ·
-https://github.com/dev-centr/adapterhub/actions[Actions]
+https://github.com/dev-centr/PackageHub[Repository] ·
+https://github.com/dev-centr/PackageHub/actions[Actions]
 
 == What it does
 
-AdapterHub is a _publishing-as-a-service_ idea:
+PackageHub is a _publishing-as-a-service_ idea:
 
 * You sign in with GitHub (or Google).
 * You connect a repo and choose which package registries to publish to (npm, PyPI, Crates.io, etc.).
 * You do a one-time “Trusted Publisher” setup in each registry (pointing at your repo and a managed workflow).
 * You publish from the dashboard or by triggering a workflow — no long-lived secrets in your repo, and packages stay under your branding.
 
-Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Actions), AdapterHub uses a _proxy_ approach: it triggers a managed GitHub Actions workflow in your repo; that workflow does the OIDC handshake with each registry. The package page still shows your repo and “GitHub Actions.”
+Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Actions), PackageHub uses a _proxy_ approach: it triggers a managed GitHub Actions workflow in your repo; that workflow does the OIDC handshake with each registry. The package page still shows your repo and “GitHub Actions.”
 
 == Quick links
 
@@ -27,7 +27,7 @@ Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Acti
 * *Web app* (`apps/web`): SolidStart — dashboard, connect GitHub, connect registries, trigger publish.
 * *Docs* (`apps/docs`): Fumadocs (Next.js) — user and contributor docs; deployed via GitHub Actions.
 
-*Canonical path in code hive:* `Z:\code\github.com\dev-centr\adapterhub` — clone or work from there to match the FOLDER_SCHEMA.
+*Canonical path in code hive:* `Z:\code\github.com\dev-centr\PackageHub` — clone or work from there to match the FOLDER_SCHEMA.
 
 == Commands (from repo root)
 
@@ -53,4 +53,4 @@ The Fumadocs site in `apps/docs` covers:
 
 Run `pnpm dev:docs` and open http://localhost:3000/docs.
 
-To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/adapterhub/.
+To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/PackageHub/.
