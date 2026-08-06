@@ -1,12 +1,38 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/packagehub/graphs/contributors]
+image:https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/packagehub/network/members]
+image:https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/packagehub/stargazers]
+image:https://img.shields.io/github/issues/dev-centr/packagehub.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/packagehub/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/dev-centr/packagehub.svg?style=for-the-badge[Issues]
+endif::[]
+
 = PackageHub
 
 **Find packages. Publish packages.** PackageHub is the public storefront for discovery; **pkgpublish** is the publisher console for configuration and shipping.
 
-https://packagehub.dev[packagehub.dev] ·
-https://pkgpublish.dev[pkgpublish.dev] ·
-https://github.com/dev-centr/PackageHub[Repository]
+link:https://packagehub.dev[packagehub.dev] ·
+link:https://pkgpublish.dev[pkgpublish.dev] ·
+link:https://github.com/dev-centr/packagehub/issues[Report Bug] ·
+link:https://github.com/dev-centr/packagehub/issues[Request Feature]
 
-== Dual-domain brand (locked)
+== About The Project
+
+Publish packages across registries from one dashboard (npm, PyPI, Crates.io).
+
+**Publish packages across registries from one dashboard.** Connect GitHub, add trusted publishers once, and ship to npm, PyPI, Crates.io, and more — without storing API keys or juggling each registry's setup.
+
+=== Dual-domain brand (locked)
 
 [cols="1,3"]
 |===
@@ -23,32 +49,34 @@ Both share identity later via https://devcentr.org[devcentr.org] account. Do not
 
 The monorepo may keep the `packagehub` / `PackageHub` folder name; product copy and routes should speak both brands clearly.
 
-== What it does
-
 PackageHub (browse) + pkgpublish (console) are a _publishing-as-a-service_ family:
 
 * You sign in with GitHub (or Google) — eventually via DevCentr.org.
 * You connect a repo and choose which package registries to publish to (npm, PyPI, Crates.io, etc.).
-* You do a one-time “Trusted Publisher” setup in each registry (pointing at your repo and a managed workflow).
+* You do a one-time "Trusted Publisher" setup in each registry (pointing at your repo and a managed workflow).
 * You publish from the dashboard or by triggering a workflow — no long-lived secrets in your repo, and packages stay under your branding.
 * The public PackageHub surface draws attention to packages that were published through the ecosystem.
 
-Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Actions), the publisher path uses a _proxy_ approach: it triggers a managed GitHub Actions workflow in your repo; that workflow does the OIDC handshake with each registry. The package page still shows your repo and “GitHub Actions.”
+Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Actions), the publisher path uses a _proxy_ approach: it triggers a managed GitHub Actions workflow in your repo; that workflow does the OIDC handshake with each registry. The package page still shows your repo and "GitHub Actions."
 
-== Quick links
-
-* link:install.adoc[Install] — Prerequisites and `pnpm install`
-* link:running.adoc[Running] — Dev servers, build, and start
-* link:repo-architecture.adoc[Repo architecture] — Monorepo layout, apps, and CI
-
-== Repo at a glance
+=== Repo at a glance
 
 * *Web app* (`apps/web`): SolidStart — today includes dashboard flows that will split toward **pkgpublish.dev**; browse/marketing faces **packagehub.dev**.
 * *Docs* (`apps/docs`): Fumadocs (Next.js) — user and contributor docs; deployed via GitHub Actions.
 
 *Canonical path in code hive:* `Z:\code\github.com\dev-centr\PackageHub` — clone or work from there to match the FOLDER_SCHEMA.
 
-== Commands (from repo root)
+== Built With
+
+* link:https://start.solidjs.com/[SolidStart] — web dashboard
+* link:https://fumadocs.vercel.app/[Fumadocs] — documentation site
+* link:https://pnpm.io/[pnpm] — monorepo tooling
+
+== Getting Started
+
+See link:install.adoc[Install] — Prerequisites and `pnpm install`.
+
+== Usage
 
 [source,bash]
 ----
@@ -60,7 +88,11 @@ pnpm build:web    # Build web only
 pnpm build:docs   # Build docs only
 ----
 
-== Documentation site
+=== Documentation
+
+* link:install.adoc[Install] — Prerequisites and `pnpm install`
+* link:running.adoc[Running] — Dev servers, build, and start
+* link:repo-architecture.adoc[Repo architecture] — Monorepo layout, apps, and CI
 
 The Fumadocs site in `apps/docs` covers:
 
@@ -73,3 +105,10 @@ The Fumadocs site in `apps/docs` covers:
 Run `pnpm dev:docs` and open http://localhost:3000/docs.
 
 To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/PackageHub/.
+
+== Contact
+
+DevCentr.org — support@devcentr.org
+
+* Project: https://github.com/dev-centr/packagehub
+* Site: https://packagehub.dev
