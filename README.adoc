@@ -3,8 +3,30 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/dev-centr/packagehub/graphs/contributors"><img src="https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/dev-centr/packagehub/network/members"><img src="https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/dev-centr/packagehub/stargazers"><img src="https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/dev-centr/packagehub/issues"><img src="https://img.shields.io/github/issues/dev-centr/packagehub.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">PackageHub</h3>
+<p align="center">
+<strong>Find packages. Publish packages.</strong> PackageHub is the public storefront for discovery; <strong>pkgpublish</strong> is the publisher console for configuration and shipping.<br />
+<a href="https://packagehub.dev"><strong>packagehub.dev »</strong></a><br /><br />
+<a href="https://pkgpublish.dev">pkgpublish.dev</a>
+&middot;
+<a href="https://github.com/dev-centr/packagehub/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/dev-centr/packagehub/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
 
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/packagehub/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/packagehub/network/members]
 image:https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/packagehub/stargazers]
@@ -18,6 +40,7 @@ link:https://packagehub.dev[packagehub.dev] ·
 link:https://pkgpublish.dev[pkgpublish.dev] ·
 link:https://github.com/dev-centr/packagehub/issues[Report Bug] ·
 link:https://github.com/dev-centr/packagehub/issues[Request Feature]
+endif::[]
 
 == About The Project
 
