@@ -36,6 +36,15 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      # Next.js `output: 'export'` cannot emit these route handlers (EISDIR /
+      # server-only LLM helpers). They remain for Vercel/dev; GH Pages only needs HTML docs + search index.
+      - name: Strip non-static routes for Pages export
+        run: |
+          rm -rf apps/docs/app/llms.mdx
+          rm -rf apps/docs/app/llms.txt
+          rm -rf apps/docs/app/llms-full.txt
+          rm -rf apps/docs/app/og
+
       - name: Build docs
         run: pnpm build:docs
 
