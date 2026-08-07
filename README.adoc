@@ -3,19 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
+
 image:https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/packagehub/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/packagehub/network/members]
 image:https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/packagehub/stargazers]
 image:https://img.shields.io/github/issues/dev-centr/packagehub.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/packagehub/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dev-centr/packagehub.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dev-centr/packagehub.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dev-centr/packagehub.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dev-centr/packagehub.svg?style=for-the-badge[Issues]
-endif::[]
 
 = PackageHub
 
@@ -66,11 +59,22 @@ Because most registries only trust a fixed set of OIDC issuers (e.g. GitHub Acti
 
 *Canonical path in code hive:* `Z:\code\github.com\dev-centr\PackageHub` — clone or work from there to match the FOLDER_SCHEMA.
 
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
+
 == Built With
 
-* link:https://start.solidjs.com/[SolidStart] — web dashboard
-* link:https://fumadocs.vercel.app/[Fumadocs] — documentation site
-* link:https://pnpm.io/[pnpm] — monorepo tooling
+* Web app
+** link:https://start.solidjs.com/[image:https://img.shields.io/badge/SolidStart-2C4F7C?style=for-the-badge&logo=solid&logoColor=white[SolidStart]]
+* Docs
+** link:https://fumadocs.vercel.app/[image:https://img.shields.io/badge/Fumadocs-000000?style=for-the-badge&logo=nextdotjs&logoColor=white[Fumadocs]]
+* Monorepo tooling
+** link:https://pnpm.io/[image:https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white[pnpm]]
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Getting Started
 
@@ -106,9 +110,29 @@ Run `pnpm dev:docs` and open http://localhost:3000/docs.
 
 To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/PackageHub/.
 
+== Contributing
+
+Contributions are welcome. Open an issue before large changes.
+
+=== Top contributors
+
+++++
+<a href="https://github.com/dev-centr/packagehub/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=dev-centr/packagehub" alt="contributors" />
+</a>
+++++
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
+
 == Contact
 
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/packagehub
 * Site: https://packagehub.dev
+
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
