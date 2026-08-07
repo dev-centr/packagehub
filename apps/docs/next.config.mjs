@@ -18,14 +18,19 @@ const config = {
   images: { unoptimized: true },
   basePath: exportMode ? `/${repoName}` : '',
   assetPrefix: exportMode ? `https://${orgOrUser}.github.io/${repoName}/` : '',
-  async rewrites() {
-    return [
-      {
-        source: '/docs/:path*.mdx',
-        destination: '/llms.mdx/docs/:path*',
-      },
-    ];
-  },
+  // Rewrites are unsupported with `output: 'export'`.
+  ...(exportMode
+    ? {}
+    : {
+        async rewrites() {
+          return [
+            {
+              source: '/docs/:path*.mdx',
+              destination: '/llms.mdx/docs/:path*',
+            },
+          ];
+        },
+      }),
 };
 
 export default withMDX(config);
