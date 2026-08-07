@@ -131,7 +131,7 @@ The Fumadocs site in `apps/docs` covers:
 
 Run `pnpm dev:docs` and open http://localhost:3000/docs.
 
-To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; the site will be at https://dev-centr.github.io/PackageHub/.
+To publish the docs site: enable GitHub Pages in the repo (Settings → Pages → Source: **GitHub Actions**). The workflow `.github/workflows/docs.yml` builds and deploys the Fumadocs site; live docs: https://dev-centr.github.io/packagehub/ (product site target remains https://packagehub.dev when DNS is ready).
 
 == Contributing
 
@@ -154,7 +154,8 @@ Contributions are welcome. Open an issue before large changes.
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/packagehub
-* Site: https://packagehub.dev
+* Docs: https://dev-centr.github.io/packagehub/
+* Site (planned): https://packagehub.dev
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
