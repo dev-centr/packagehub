@@ -1,7 +1,7 @@
 import { source } from '@/lib/source';
 import { createFromSource } from 'fumadocs-core/search/server';
 
-// Required for Next.js `output: 'export'` (GitHub Pages).
+// Statically cached for `output: 'export'` / GitHub Pages.
 export const revalidate = false;
 
 export const { staticGET: GET } = createFromSource(source, {
