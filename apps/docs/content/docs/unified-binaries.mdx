@@ -1,0 +1,41 @@
+---
+title: Unified binaries (experimental)
+description: One download pack of native slices, Binary Tailor on delivery — a possible PackageHub future, not the OIDC registry path.
+---
+
+# Unified binaries (experimental)
+
+PackageHub’s **current** job is registry publish: npm, PyPI, Crates.io, OIDC, a managed GitHub Actions workflow in *your* repo. That does not go away.
+
+This page is a **possible future** for the other half of “shipping”: **application binaries**, where today a Download page grows a grid of OS × arch buttons and every maintainer copies a CI matrix.
+
+## Why this sits in PackageHub
+
+The first PackageHub sketches were “publish packages across registries.” Binary distribution is a sibling problem: one identity, one release train, many kernels. If the dashboard already triggers GitHub Actions, it can also:
+
+1. Run the house [polyglot CI matrix](https://docs.devcentr.org/general-knowledge/latest/how-to/polyglot-ci.html) (Windows x64/arm64, macOS **arm64 only**, Linux x64/arm64, BSD off GitHub-hosted).
+2. `binary-tailor pack` the native slices into **one** GitHub Release asset.
+3. Optionally **tailor at the CDN** (or tell the user to run Binary Tailor) so Windows gets a PE, Linux an ELF, macOS a Mach-O — boring headers for antivirus and debuggers.
+
+That last step *kind of* undoes a unified on-disk file. It keeps a unified **pipeline and a single download link**. Dev-Centr is willing to make that trade.
+
+## What this is not
+
+- Not Cosmopolitan-only. Native MSVC / Apple clang / GCC slices are the default so host `.dll` / `.dylib` / `.so` and GPU stacks still work.
+- Not a replacement for winget, Homebrew, MSI, or language registries.
+- Not a promise that Windows Defender loves an APE stub. Tailor exists **because** polyglot magics look like infectors.
+
+## Tools
+
+| Piece | Repo |
+| ----- | ---- |
+| Pack / tailor / assimilate | [binary-tailor](https://github.com/dev-centr/binary-tailor) |
+| In-memory Mach-O | [macho-memload](https://github.com/dev-centr/macho-memload) |
+| Debugger chord patches | [polyglot-debug](https://github.com/dev-centr/polyglot-debug) |
+| Concepts | [Polyglot distribution](https://docs.devcentr.org/general-knowledge/latest/explanation/architecture/polyglot-distribution.html) |
+
+`cosmocc` remains optional for a tiny launcher. The intended graft is: **native compilers** emit optimized code, then Binary Tailor (later, cosmocc itself) transplants those bytes into the pack. Header schema is slow-moving; LLVM/MSVC fixes should not wait on a private Cosmopolitan codegen fork.
+
+## Status
+
+Prototypes exist. PackageHub’s web app does **not** yet host this flow. Do not document it in getting-started as if it shipped.

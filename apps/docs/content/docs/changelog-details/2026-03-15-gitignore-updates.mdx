@@ -1,0 +1,22 @@
+---
+title: 2026-03-15 - Gitignore Improvements
+description: Updating .gitignore to exclude Nitro, SolidStart, and PNPM artifacts.
+---
+
+# Gitignore Improvements (2026-03-15)
+
+The project was seeing untracked `.nitro` folders in `apps/web/` despite being build artifacts. This update expands the root `.gitignore` to cover modern SolidStart/Nitro development artifacts and other common log files.
+
+## Changes
+
+### 1. root/.gitignore Updates
+
+Added the following entries:
+* `.nitro/`: Excudes Nitro's temporary build and type generation directory.
+* `.solid/`: Excludes SolidStart's internal cache/build directory.
+* `.vercel/`: Excludes Vercel's deployment configuration and build output (standardizing across the monorepo).
+* `pnpm-debug.log*`: Excludes PNPM-specific error logs.
+
+## Rationale
+
+Nitro generates a `.nitro` folder in the app root to hold types and other build assets. These should never be committed as they are machine-specific and regenerated during build/development. Standardizing these at the root level ensures all packages in the monorepo benefit from these exclusions.

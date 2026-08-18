@@ -1,11 +1,15 @@
 node_modules/
 .vinxi/
 .output/
+.nitro/
+.solid/
 .next/
 .turbo/
+.vercel/
 dist/
 out/
 *.log
 .env
 .env.local
 .source/
+pnpm-debug.log*
