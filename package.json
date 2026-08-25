@@ -22,8 +22,5 @@
   },
   "devDependencies": {
     "create-fumadocs-app": "^16.0.72"
-  },
-  "dependencies": {
-    "@chenglou/pretext": "^0.0.4"
   }
 }

@@ -7,6 +7,13 @@ description: Notable changes to PackageHub
 
 Notable changes to PackageHub.
 
+## 2026-08-25 - Vercel lockfile fix
+
+* **Root cause**: Commit `18295ec` added `@chenglou/pretext` to root `package.json` without updating `pnpm-lock.yaml`, so Vercel's frozen install failed with `ERR_PNPM_OUTDATED_LOCKFILE`.
+* **Fix**: Removed the unused dependency; the package is not referenced anywhere in the repo.
+
+---
+
 ## 2026-08-18 - Unified binaries (experimental)
 
 * Documented a possible PackageHub future: one CI matrix, one packed binary download, [Binary Tailor](https://github.com/dev-centr/binary-tailor) on delivery. Registry OIDC publish is unchanged.
