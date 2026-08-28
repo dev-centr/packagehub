@@ -3,7 +3,7 @@ import { Title } from "@solidjs/meta";
 export default function Registries() {
   return (
     <>
-      <Title>Registries — AdapterHub</Title>
+      <Title>Registries — PackageHub</Title>
       <h1>Supported registries</h1>
       <p>Central view of registries you can publish to via trusted publishing (OIDC).</p>
       <ul>

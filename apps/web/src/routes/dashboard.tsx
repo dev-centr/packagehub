@@ -3,7 +3,7 @@ import { Title } from "@solidjs/meta";
 export default function Dashboard() {
   return (
     <>
-      <Title>Dashboard — AdapterHub</Title>
+      <Title>Dashboard — PackageHub</Title>
       <h1>Dashboard</h1>
       <p>Connect your GitHub repos and package registries here.</p>
       <p>

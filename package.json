@@ -1,7 +1,7 @@
 {
   "name": "packagehub",
   "private": true,
-  "description": "Publish packages across registries (npm, PyPI, Crates.io, etc.) from one dashboard with OIDC and managed GitHub workflows.",
+  "description": "Publish packages across registries (npm, PyPI, Crates.io, etc.) from one dashboard — packagehub.dev",
   "scripts": {
     "dev": "pnpm --filter packagehub-web dev",
     "dev:docs": "pnpm --filter packagehub-docs dev",

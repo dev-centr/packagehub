@@ -8,7 +8,7 @@ PackageHub is a pnpm workspace monorepo with two applications and shared tooling
 |===
 | Path | Purpose
 | `apps/web` | SolidStart app — main product (dashboard, GitHub/registry connections, publish UI)
-| `apps/docs` | Fumadocs (Next.js) — documentation site (MDX in `content/docs/`)
+| `apps/docs` | Fumadocs (Next.js) — documentation site (MDX in `content/docs/`), built for packagehub.dev
 | `scripts/` | One-off scripts (e.g. create-docs scaffold)
 | `README.adoc` | Project overview and quick links
 | `install.adoc` | Installation steps
@@ -28,14 +28,14 @@ PackageHub is a pnpm workspace monorepo with two applications and shared tooling
 * Stack: Next.js 16, Fumadocs UI, Fumadocs MDX, Tailwind 4.
 * Content: `content/docs/*.mdx`; sidebar order in `content/docs/meta.json`.
 * Source config: `source.config.ts`; Fumadocs loader in `lib/source.ts`.
-* Build output: static export or Node server depending on Next config; CI deploys the docs (e.g. GitHub Pages).
+* Build: static export (`output: 'export'`) for deployment at packagehub.dev (root-relative).
 
 == CI/CD
 
 * `.github/workflows/` — GitHub Actions:
-** `docs.yml` — build and deploy the Fumadocs site (e.g. to GitHub Pages or Vercel).
+** `docs.yml` — build the Fumadocs site; deploy the `apps/docs/out` artifact to your host (e.g. packagehub.dev).
 
 == Dependencies
 
 * Root `package.json`: workspace scripts only; `create-fumadocs-app` was used as devDependency for scaffolding and can be removed.
-* Each app has its own `package.json` and lockfile is at repo root (`pnpm-lock.yaml`).
+* Each app has its own `package.json`; lockfile is at repo root (`pnpm-lock.yaml`).
