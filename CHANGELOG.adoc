@@ -4,6 +4,7 @@ This repository uses link:apps/docs/content/docs/changelog.mdx[Fumadocs-based ch
 
 == Latest Updates
 
+* **2026-08-25**: Fix Vercel `pnpm install --frozen-lockfile` failure (removed unused root dependency added without lockfile sync).
 * **2026-08-18**: Experimental unified binary packs (Binary Tailor / polyglot CI) documented — not a registry-publish change.
 * **2026-03-15**: Gitignore improvements (excluded .nitro, .solid, .vercel).
 * **2026-03-12**: Vercel deployment and PNPM 10 migration.
