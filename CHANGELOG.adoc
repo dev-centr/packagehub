@@ -1,10 +1,11 @@
-= Changelog
+﻿= Changelog
 
 This repository uses link:apps/docs/content/docs/changelog.mdx[Fumadocs-based changelogs] in its documentation.
 
 == Latest Updates
 
-* **2026-08-18**: Experimental unified binary packs (Binary Tailor / polyglot CI) documented — not a registry-publish change.
+* **2026-09-10**: Fumadocs app adds `app/sitemap.ts` and `app/robots.ts` for `https://dev-centr.github.io/packagehub` (pages from the docs source loader).
+* **2026-08-18**: Experimental unified binary packs (Binary Tailor / polyglot CI) documented â€” not a registry-publish change.
 * **2026-03-15**: Gitignore improvements (excluded .nitro, .solid, .vercel).
 * **2026-03-12**: Vercel deployment and PNPM 10 migration.
 * For more details, see the xref:apps/docs/content/docs/changelog.mdx[Changelog in docs].
