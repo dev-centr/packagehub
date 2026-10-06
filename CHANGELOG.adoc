@@ -1,6 +1,10 @@
-﻿= Changelog
+= Changelog
 
 This repository uses link:apps/docs/content/docs/changelog.mdx[Fumadocs-based changelogs] in its documentation.
+
+== Unreleased
+
+* Remove unused `create-fumadocs-app` scaffolder and `scripts/create-docs.mjs`.
 
 == Latest Updates
 

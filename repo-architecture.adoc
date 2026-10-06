@@ -9,7 +9,7 @@ PackageHub is a pnpm workspace monorepo with two applications and shared tooling
 | Path | Purpose
 | `apps/web` | SolidStart app — main product (dashboard, GitHub/registry connections, publish UI)
 | `apps/docs` | Fumadocs (Next.js) — documentation site (MDX in `content/docs/`), built for packagehub.dev
-| `scripts/` | One-off scripts (e.g. create-docs scaffold)
+| `scripts/` | One-off scripts (optional)
 | `README.adoc` | Project overview and quick links
 | `install.adoc` | Installation steps
 | `running.adoc` | How to run and build locally
@@ -37,5 +37,5 @@ PackageHub is a pnpm workspace monorepo with two applications and shared tooling
 
 == Dependencies
 
-* Root `package.json`: workspace scripts only; `create-fumadocs-app` was used as devDependency for scaffolding and can be removed.
+* Root `package.json`: workspace scripts only (scaffolding dependency removed).
 * Each app has its own `package.json`; lockfile is at repo root (`pnpm-lock.yaml`).
